@@ -254,6 +254,24 @@ del keylogger_demo.exe
 
 ---
 
+## Changelog
+
+### v2.0.0 (2026-03-13)
+- Fix: `ToUnicode()` dead key double-call implemented — pressing `^` then `e` now correctly produces `ê` on European keyboards
+- Fix: `GetWindowTextA` → `GetWindowTextW` + `WideCharToMultiByte` — preserves non-ASCII window titles in the log
+- Fix: Manual 80-line `vk_to_string()` switch → `ToUnicodeEx` — handles all keyboard layouts automatically
+- Fix: `detector.c` windowless scan O(n×m) → O(n+m) — builds visible-PID set once, no per-process window list rescan
+- Add: Single-instance mutex guard via `Global\` named mutex
+- Add: `Ctrl+Shift+F12` kill switch via `RegisterHotKey`
+- Add: Session header with machine name and username
+- Add: Process path alongside window title via `QueryFullProcessImageNameA`
+- Add: UTF-8 BOM and binary mode log file
+- Add: `detector.c` — companion detection tool showing the defender's perspective
+- Add: `Makefile`, cross-compile support for Kali/Ubuntu → Windows
+
+### v1.0.1
+- Initial release
+
 ## Disclaimer
 
 This project is for **educational purposes only**. It was built to teach Win32 API internals, keyboard hooking mechanics, Windows persistence mechanisms, and detection/defence techniques — the same concepts covered in OSCP, eCPPT, and Windows malware analysis courses.
